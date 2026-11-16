@@ -1,0 +1,158 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-gold: #cf9d2b;
+  --color-gold-2: #d3a337;
+  --color-ink: #000000;
+  --color-card: #3b3b3b;
+  --font-inter: 'Inter', sans-serif;
+  --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+  --font-sora: 'Sora', sans-serif;
+  --font-syne: 'Syne', sans-serif;
+  --font-roboto: 'Roboto', sans-serif;
+  /* Elementor breakpoints: mobile <=767, tablet <=1024 */
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1025px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Elementor boxed container: 1350px max + 10px column padding */
+.gw-container {
+  max-width: 1350px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* premium-title "clipped" gradient headings */
+.gw-gradient-text {
+  background-image: linear-gradient(129deg, #ffffff 23%, #d3a337 84%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Entrance animations (Elementor / animate.css, 1.25s) ---------- */
+.gw-anim {
+  visibility: hidden;
+}
+.gw-anim.gw-in {
+  visibility: visible;
+  animation-duration: 1.25s;
+  animation-fill-mode: both;
+}
+.gw-in.fadeInLeft { animation-name: fadeInLeft; }
+.gw-in.fadeInRight { animation-name: fadeInRight; }
+.gw-in.fadeInUp { animation-name: fadeInUp; }
+.gw-in.fadeInDown { animation-name: fadeInDown; }
+.gw-in.lightSpeedIn { animation-name: lightSpeedIn; animation-timing-function: ease-out; }
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translate3d(-100%, 0, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translate3d(100%, 0, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate3d(0, 100%, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translate3d(0, -100%, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes lightSpeedIn {
+  from { transform: translate3d(100%, 0, 0) skewX(-30deg); opacity: 0; }
+  60% { transform: skewX(20deg); opacity: 1; }
+  80% { transform: skewX(-5deg); }
+  to { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gw-anim { visibility: visible; }
+  .gw-anim.gw-in { animation: none; }
+  .gw-marquee-track { animation-play-state: paused !important; }
+}
+
+/* ---------- Marquee (deensimc smooth text / testimonial marquee) ---------- */
+.gw-marquee {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+.gw-marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  min-width: 100%;
+  gap: var(--gap, 50px);
+  padding-right: var(--gap, 50px);
+  animation: gw-marquee var(--duration, 40s) linear infinite;
+}
+.gw-marquee:hover .gw-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes gw-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+/* Section backgrounds. The originals (Rectangle-1.png, Group.png, dgda.png,
+   dfhdhf.png, dfhdhf-1.png) live on the WordPress site and were not in the
+   saved page. Drop them into public/images/bg/ with those names and they
+   layer on top of these fallbacks automatically. */
+.gw-bg-hero {
+  background-color: #000;
+  background-image:
+    url('/images/bg/Rectangle-1.png'),
+    radial-gradient(ellipse 60% 70% at 78% 55%, rgba(207, 157, 43, 0.28), transparent 70%),
+    radial-gradient(ellipse 50% 60% at 15% 30%, rgba(207, 157, 43, 0.12), transparent 70%),
+    linear-gradient(180deg, #0b0905 0%, #000 100%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.gw-bg-group {
+  background-color: #000;
+  background-image: url('/images/bg/Group.png'),
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(207, 157, 43, 0.12), transparent 70%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.gw-bg-about {
+  background-color: #000;
+  background-image: url('/images/bg/dgda.png'),
+    radial-gradient(ellipse 60% 60% at 50% 50%, rgba(207, 157, 43, 0.1), transparent 70%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.gw-bg-explore {
+  background-color: #000;
+  background-image: url('/images/bg/dfhdhf.png'),
+    radial-gradient(ellipse 50% 40% at 85% 20%, rgba(207, 157, 43, 0.1), transparent 70%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.gw-bg-faq {
+  background-color: #000;
+  background-image: url('/images/bg/dfhdhf-1.png'),
+    radial-gradient(ellipse 50% 40% at 15% 80%, rgba(207, 157, 43, 0.1), transparent 70%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
